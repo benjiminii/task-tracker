@@ -42,8 +42,9 @@ function Login() {
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: localStorage.getItem("email") || "",
+      password: localStorage.getItem("password") || "",
+      // user type is set to admin if true
       isAdmin: false,
     },
   });
@@ -52,10 +53,15 @@ function Login() {
     const { email, password, isAdmin } = values;
 
     try {
+      // login and save user to state
       const { success } = login(email, password, isAdmin);
+
+      // remember user creditials
+      localStorage.setItem("email", email);
+      localStorage.setItem("password", password);
+
       if (success) {
         toast.success("Login successful");
-        // router.push("/dashboard");
       } else toast.error("Invalid email or password");
     } catch (e) {
       console.log(e);
@@ -64,7 +70,7 @@ function Login() {
   }
 
   return (
-    <Card className="w-[30rem]">
+    <Card className="m-4 md:m-8 border-white/30">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <div>
@@ -73,7 +79,6 @@ function Login() {
               Please enter your email and password to continue.
             </p>
           </div>
-
           <FormField
             control={form.control}
             name="email"

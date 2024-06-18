@@ -1,4 +1,4 @@
-import DashboardHeader from "@/components/layout/DashboardHeader";
+import DashboardHeader from "@/components/layout/Dashboard/DashboardHeader";
 
 export default function RootLayout({
   children,
@@ -6,9 +6,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="min-h-screen bg-stable-primary">
+    <>
       <DashboardHeader />
       {children}
-    </main>
+    </>
   );
 }

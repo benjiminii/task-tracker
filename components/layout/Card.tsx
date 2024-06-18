@@ -10,7 +10,7 @@ function Card({
   return (
     <div
       className={cn(
-        "grid gap-4 p-10 bg-stable-gradient rounded-lg border border-white/30",
+        "grid gap-4 p-10 bg-stable-gradient rounded-lg border border-stable-primary",
         className
       )}
     >

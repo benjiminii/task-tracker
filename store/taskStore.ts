@@ -17,8 +17,9 @@ type TaskState = {
 };
 
 const taskStore = create<TaskState>()(
+  // persist allows us to automatically save the state to localStorage
   persist(
-    (set, get) => ({
+    (set) => ({
       tasks: [],
       createTask: (title, userId) => {
         const newTask: Task = {

@@ -78,3 +78,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+.container {
+  @apply py-6;
+  @media (min-width: 768px) {
+    padding-top: 3rem /* 24 */;
+    padding-bottom: 3rem /* 24 */;
+  }
+}

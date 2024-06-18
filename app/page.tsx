@@ -1,4 +1,4 @@
-import LoginSection from "@/components/layout/Login/LoginSection";
+import LoginSection from "@/components/layout/Login";
 
 export default function Home() {
   return (
