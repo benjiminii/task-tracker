@@ -1,8 +1,7 @@
 import { create } from "zustand";
-import uniqid from "uniqid";
+import { persist } from "zustand/middleware";
 
 type User = {
-  id: string;
   email: string;
   userType: "normal" | "admin";
 };
@@ -10,24 +9,36 @@ type User = {
 type AuthState = {
   isAuthenticated: boolean;
   user: User | null;
-  login: (email: string, password: string) => void;
+  login: (
+    email: string,
+    password: string,
+    isAdmin: boolean
+  ) => { success: boolean };
   logout: () => void;
 };
 
-const useAuthStore = create<AuthState>((set) => ({
-  isAuthenticated: false,
-  user: null,
-  login: (email, password) => {
-    const user: User = {
-      id: uniqid(),
-      email,
-      userType: "normal",
-    };
-    set({ isAuthenticated: true, user });
-  },
-  logout: () => {
-    set({ isAuthenticated: false, user: null });
-  },
-}));
+const authStore = create<AuthState>()(
+  persist(
+    (set) => ({
+      isAuthenticated: false,
+      user: null,
+      login: (email, password, isAdmin) => {
+        const user: User = {
+          email,
+          userType: isAdmin ? "admin" : "normal",
+        };
+        set({ isAuthenticated: true, user });
+        return { success: true };
+      },
+      logout: () => {
+        set({ isAuthenticated: false, user: null });
+      },
+    }),
 
-export default useAuthStore;
+    {
+      name: "auth-storage",
+    }
+  )
+);
+
+export default authStore;

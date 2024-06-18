@@ -3,11 +3,13 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Benji's Task Tracker",
   description: "Benji's Stablelab assignment website",
 };
+const inter = Inter({ subsets: ["latin"] });
 const myFont = localFont({
   src: [
     {
@@ -65,7 +67,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(myFont.className, "antialiased")}>{children}</body>
+      <body className={cn(inter.className, "antialiased text-white")}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }

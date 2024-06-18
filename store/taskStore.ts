@@ -16,7 +16,7 @@ type TaskState = {
   deleteTask: (taskId: string) => void;
 };
 
-const useTaskStore = create<TaskState>()(
+const taskStore = create<TaskState>()(
   persist(
     (set, get) => ({
       tasks: [],
@@ -46,9 +46,8 @@ const useTaskStore = create<TaskState>()(
     }),
     {
       name: "task-storage",
-      getStorage: () => localStorage,
     }
   )
 );
 
-export default useTaskStore;
+export default taskStore;

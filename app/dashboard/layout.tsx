@@ -1,14 +1,4 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/layout/Header";
-
-const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Benji's Task Tracker",
-  description: "Benji's Stablelab assignment website",
-};
+import DashboardHeader from "@/components/layout/DashboardHeader";
 
 export default function RootLayout({
   children,
@@ -16,11 +6,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Header />
-        {children}
-      </body>
-    </html>
+    <main className="min-h-screen bg-stable-primary">
+      <DashboardHeader />
+      {children}
+    </main>
   );
 }
