@@ -45,6 +45,7 @@ bun dev
 - Tailwind CSS
 - Shadcn UI
 - TypeScript
+- Echarts
 - React Hook Form
 - Zod
 - Bun
