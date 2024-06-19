@@ -45,9 +45,8 @@ function Login() {
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      // after successful login, get from localStorage user credentials
-      email: localStorage.getItem("email") || "",
-      password: localStorage.getItem("password") || "",
+      email: "",
+      password: "",
       // user type is set to admin if true
       isAdmin: false,
     },
@@ -59,10 +58,6 @@ function Login() {
     try {
       // login and save user to state
       const { success } = login(email, password, isAdmin);
-
-      // remember user creditials
-      localStorage.setItem("email", email);
-      localStorage.setItem("password", password);
 
       if (success) {
         toast.success("Login successful");
