@@ -3,8 +3,6 @@
 import * as echarts from "echarts";
 import taskStore from "@/store/taskStore";
 import { useEffect, useMemo } from "react";
-import DashboardTable from "./DashboardTable";
-import Card from "../Card";
 
 function DashboardChart() {
   const { tasks } = taskStore();
@@ -44,16 +42,7 @@ function DashboardChart() {
     //run effect everytime pieChartOptions changes
   }, [pieChartOptions]);
 
-  return (
-    <div className="container grid xl:grid-cols-2 gap-6">
-      <Card className="xl:col-span-1 h-[30rem]">
-        <div id="pie-chart" className="w-full" />
-      </Card>
-      <Card className="xl:col-span-1 overflow-y-auto h-[30rem]">
-        <DashboardTable />
-      </Card>
-    </div>
-  );
+  return <div id="pie-chart" className="w-full" />;
 }
 
 export default DashboardChart;

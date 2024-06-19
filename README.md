@@ -39,6 +39,8 @@ bun dev
 
 5. Open your browser and navigate to `http://localhost:3000`.
 
+6. To login type in your email and any password that is 5 characters or more.
+
 ## Technologies
 
 - Next.js
@@ -49,7 +51,15 @@ bun dev
 - React Hook Form
 - Zod
 - Bun
+- Zustand
+
+## Features
+
+1. User authority type
+2. Users can only edit their own tasks.(complete or delete)
+3. Admins can edit all tasks.(complete or delete)
 
 ## License
 
 This project is licensed under the MIT License.
+`

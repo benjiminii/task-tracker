@@ -5,9 +5,9 @@ import { redirect } from "next/navigation";
 
 import authStore from "@/store/authStore";
 
-import DashboardChart from "@/components/layout/Dashboard/DashboardChart";
 import DashboardStats from "@/components/layout/Dashboard/DashboardStats";
 import DashboardTitle from "@/components/layout/Dashboard/DashboardTitle";
+import DashboardTable from "@/components/layout/Dashboard/DashboardTable";
 
 function Dashboard() {
   const { isAuthenticated } = authStore();
@@ -20,7 +20,7 @@ function Dashboard() {
     <main className="min-h-screen text-black">
       <DashboardTitle />
       <DashboardStats />
-      <DashboardChart />
+      <DashboardTable />
     </main>
   );
 }

@@ -2,6 +2,7 @@ import Card from "@/components/layout/Card";
 import { cn } from "@/lib/utils";
 import taskStore from "@/store/taskStore";
 import { ListChecks, ClipboardList, LayoutList } from "lucide-react";
+import DashboardChart from "./DashboardChart";
 
 function DashboardStats() {
   const { tasks } = taskStore();
@@ -35,15 +36,20 @@ function DashboardStats() {
 
   return (
     <section className={cn("container grid md:grid-cols-3 gap-6 text-black")}>
-      {taskData.map(({ title, amount, iconColor, icon }) => (
-        <Card className="flex items-center gap-2" key={title}>
-          <div className={cn("p-2 rounded-md bg-", iconColor)}>{icon}</div>
-          <div>
-            <p>{title}</p>
-            {amount}
-          </div>
-        </Card>
-      ))}
+      <div className="grid gap-6">
+        {taskData.map(({ title, amount, iconColor, icon }) => (
+          <Card className="flex items-center gap-2" key={title}>
+            <div className={cn("p-2 rounded-md bg-", iconColor)}>{icon}</div>
+            <div>
+              <p>{title}</p>
+              {amount}
+            </div>
+          </Card>
+        ))}
+      </div>
+      <Card className="md:col-span-2 h-[30rem]">
+        <DashboardChart />
+      </Card>
     </section>
   );
 }

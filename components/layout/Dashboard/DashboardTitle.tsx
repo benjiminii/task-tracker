@@ -11,10 +11,12 @@ import { Label } from "@/components/ui/label";
 import taskStore from "@/store/taskStore";
 
 import { toast } from "sonner";
+import authStore from "@/store/authStore";
 
 function DashboardTitle() {
   const [open, setOpen] = useState(false);
   const [taskName, setTaskName] = useState("");
+  const { user } = authStore();
 
   const { createTask } = taskStore();
 
@@ -23,8 +25,12 @@ function DashboardTitle() {
       toast.error("Task name must be at least 5 characters");
       return;
     }
+    if (!user) {
+      toast.error("You must be logged in to add a task");
+      return;
+    }
     // task is added to the state store
-    createTask(taskName, "user");
+    createTask(taskName, user?.email);
     setOpen(false);
   }
 
