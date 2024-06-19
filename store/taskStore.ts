@@ -1,17 +1,19 @@
 import { create } from "zustand";
 import uniqid from "uniqid";
 import { persist } from "zustand/middleware";
+import dayjs from "dayjs";
 
-type Task = {
+export type Task = {
   id: string;
   title: string;
   completed: boolean;
-  userId: string;
+  email: string;
+  date: string;
 };
 
 type TaskState = {
   tasks: Task[];
-  createTask: (title: string, userId: string) => void;
+  createTask: (title: string, email: string) => void;
   toggleTaskCompletion: (taskId: string) => void;
   deleteTask: (taskId: string) => void;
 };
@@ -21,15 +23,16 @@ const taskStore = create<TaskState>()(
   persist(
     (set) => ({
       tasks: [],
-      createTask: (title, userId) => {
+      createTask: (title, email) => {
         const newTask: Task = {
           id: uniqid(),
           title,
           completed: false,
-          userId,
+          email,
+          date: dayjs().toISOString(),
         };
         set((state) => ({
-          tasks: [...state.tasks, newTask],
+          tasks: [newTask, ...state.tasks],
         }));
       },
       toggleTaskCompletion: (taskId) => {

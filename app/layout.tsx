@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description: "Benji's Stablelab assignment website",
 };
 const inter = Inter({ subsets: ["latin"] });
+// local font for the nekst font but some characters are missing
 const myFont = localFont({
   src: [
     {

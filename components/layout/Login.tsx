@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { Input } from "@/components/ui/input";
 import Card from "@/components/layout/Card";
 import { Switch } from "@/components/ui/switch";
@@ -21,7 +23,6 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { useEffect } from "react";
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -34,14 +35,17 @@ function Login() {
   const router = useRouter();
 
   useEffect(() => {
+    // redirect to dashboard if user is already logged in
     if (user) {
       router.push("/dashboard");
     }
   }, [user, router]);
 
+  // Form validation schema
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
+      // after successful login, get from localStorage user credentials
       email: localStorage.getItem("email") || "",
       password: localStorage.getItem("password") || "",
       // user type is set to admin if true
@@ -123,7 +127,6 @@ function Login() {
               );
             }}
           />
-
           <Button className="w-full bg-stable-blue">Login</Button>
         </form>
       </Form>

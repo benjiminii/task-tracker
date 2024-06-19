@@ -6,6 +6,7 @@ import { ListChecks, ClipboardList, LayoutList } from "lucide-react";
 function DashboardStats() {
   const { tasks } = taskStore();
 
+  // get the number of tasks, completed tasks and uncompleted tasks
   const totalTasks = tasks.length;
   const completedTasks = tasks.filter((task) => task.completed).length;
   const uncompletedTasks = tasks.filter((task) => !task.completed).length;
@@ -33,11 +34,9 @@ function DashboardStats() {
   ];
 
   return (
-    <section
-      className={cn("container grid md:grid-cols-3 gap-6 text-black !pt-0")}
-    >
+    <section className={cn("container grid md:grid-cols-3 gap-6 text-black")}>
       {taskData.map(({ title, amount, iconColor, icon }) => (
-        <Card className="flex items-center gap-2">
+        <Card className="flex items-center gap-2" key={title}>
           <div className={cn("p-2 rounded-md bg-", iconColor)}>{icon}</div>
           <div>
             <p>{title}</p>

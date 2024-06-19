@@ -29,8 +29,8 @@ function DashboardTitle() {
   }
 
   return (
-    <section className="container flex justify-between items-center">
-      <h1 className="text-3xl">Task Dashboard</h1>
+    <section className="container flex justify-between items-center mt-6">
+      <h1 className="text-2xl md:text-3xl">Task Dashboard</h1>
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
